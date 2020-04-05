@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name" translatable="false">TopNotch</string>
+    <string name="topnotch">TopNotch</string>
+    <string name="title_activity_home">Map</string>
+    <string name="btn_log_login">Log in</string>
+    <string name="btn_email_login">Email</string>
+    <string name="btn_pass_login">Password</string>
+    <string name="btn_sign_login">Sign in</string>
+    <string name="btn_forget_login">Forget Password?</string>
+    <string name="btn_no_reg_login">Not Registered? Sign up here</string>
+    <string name="btn_sign_main">Sign up</string>
+    <string name="btn_Acc_main">Already have an account? Sign in</string>
+    <string name="btn_del_renter">Select your Pick Point</string>
+    <string name="btn_pick_renter">Pick up</string>
+    <string name="btn_drop_renter">Drop off</string>
+    <string name="btn_find_renter">Find Cars</string>
+    <string name="btn_subs_menu">Subscribe to a Car</string>
+    <string name="btn_policy_menu">Policies</string>
+    <string name="btn_help_menu">Help and Support</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_check">check</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="title_activity_recycler">Recycler</string>
+    <string name="title_activity_booking">booking</string>
+    <string name="title_activity_payment">payment</string>
+    <!--payment details string values-->
+    <string name="card_number">Card Number</string>
+    <string name="exp_date">Exp. Date</string>
+    <string name="cvv">Cvv</string>
+    <string name="zip_code">Zip Code</string>
+    <string name="default_month">MM</string>
+    <string name="default_year">YYYY</string>
+    <string name="input_error_date_year">Please enter a valid year</string>
+    <string name="input_error_date_month">Please enter a valid month</string>
+    <string name="payment_exp_month_label">Exp. Month</string>
+    <string name="payment_exp_year_label">Exp. Year</string>
+    <string name="currentLocation">GoogleMapCurrentLocation</string>
+
+
+
+
+</resources>

@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.shrikanth7698:Collapsible-Calendar-View-Android:v1.0.3@aar">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e3208ee5175324426e395b8705c0b951/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e3208ee5175324426e395b8705c0b951/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e3208ee5175324426e395b8705c0b951/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.shrikanth7698/Collapsible-Calendar-View-Android/v1.0.3/bc23d3ccb62f8042f4e5c47b148fe58f13d9064d/Collapsible-Calendar-View-Android-v1.0.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

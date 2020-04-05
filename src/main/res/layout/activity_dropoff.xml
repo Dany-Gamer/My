@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Button
+        android:id="@+id/select_time"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:text="Select your End Time"
+        android:background="#000000"
+        android:textColor="#FFFFFF"
+        />
+    <Button
+        android:id="@+id/startend_trip"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:text="End Trip Date"
+        android:background="#212121"
+        android:textColor="#FFFFFF"
+        />
+    <Button
+        android:id="@+id/start_trip"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:text="End Trip Date"
+        android:background="#EEEEEE"
+        android:textColor="#000000"
+        />
+
+
+    <com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/calendarView"
+        app:primaryColor="#0336FF"
+        app:textColor="@android:color/white"
+        app:selectedItem_textColor="@color/google_red"
+        app:todayItem_textColor="@android:color/white"
+        app:todayItem_background="@drawable/circle_white_stroke_background"
+        app:selectedItem_background="@drawable/circle_white_solid_background"
+        app:buttonLeft_drawableTintColor="@android:color/white"
+        app:buttonRight_drawableTintColor="@android:color/white"
+        app:expandIconColor="@android:color/white">
+    </com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar>
+
+    <Button
+        android:id="@+id/start_triptime"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:text="End Trip Time"
+        android:background="#EEEEEE"
+        android:textColor="#000000"
+        />
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/dropBtn"
+        android:onClick="setTime"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center"
+        android:background="@color/black"
+        android:textColor="#FFFFFF"
+        android:text="Pick Your Time"
+        />
+
+</LinearLayout>

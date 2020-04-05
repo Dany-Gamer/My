@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Login">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_log_login"
+        android:layout_marginLeft="80dp"
+        android:textSize="40sp"
+        android:textColor="#000000"
+        />
+
+    <EditText
+        android:id="@+id/email_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="@string/btn_email_login"
+        android:layout_marginTop="150dp"
+        />
+
+    <EditText
+        android:id="@+id/pass_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="@string/btn_pass_login"
+        android:layout_marginTop="40dp"
+        />
+
+
+
+    <Button
+        android:id="@+id/RegisterAccoun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Sign in"
+        android:background="#0336FF"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="40dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_forget_login"
+        android:textColor="#0336FF"
+        android:textSize="15sp"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <TextView
+        android:id="@+id/logInAlert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_no_reg_login"
+        android:textColor="#0336FF"
+        android:textSize="15sp"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="30dp"
+        />
+
+
+
+
+
+
+
+
+</LinearLayout>

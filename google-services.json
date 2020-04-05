@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "604724563478",
+    "firebase_url": "https://topnotch-224e2.firebaseio.com",
+    "project_id": "topnotch-224e2",
+    "storage_bucket": "topnotch-224e2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604724563478:android:65ed6f0860254e8cd6af37",
+        "android_client_info": {
+          "package_name": "com.example.topnotch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "604724563478-1gs6tlsokcqk95eo2phfqs3tulc6msue.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.topnotch",
+            "certificate_hash": "b4acfeaf4743a92fe36d7bc6d06cf5b7cbb52611"
+          }
+        },
+        {
+          "client_id": "604724563478-lnj1o6jl3ji8scbd4pqn7ftol8vc5nbv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDloU76xeBQKA_cF5rE-U4IHYjdXh2bl1U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "604724563478-lnj1o6jl3ji8scbd4pqn7ftol8vc5nbv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
