@@ -2,10 +2,16 @@ package com.example.topnotch;
 
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -17,12 +23,17 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.location.LocationListener;
 
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -43,12 +54,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.core.Context;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
+import static android.content.Context.LOCATION_SERVICE;
 import static androidx.constraintlayout.widget.Constraints.TAG;
+import static androidx.core.content.ContextCompat.getSystemService;
 
 
 /**
@@ -61,13 +74,15 @@ public class HomeDel extends Fragment implements
     View view;
     GoogleMap mGoogleMap;
     MapView mMapView;
-    SearchView searchView;
+    private EditText mSearchText;
     private Boolean mLocationPermissionsGranted = false;
     private FusedLocationProviderClient mFusedLocationClient;
 
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
+    private static final int ERROR_DIALOG_REQUEST = 9001;
+    private static final int PERMISSIONS_REQUEST_ENABLE_GPS = 9003;
     private static final float DEFAULT_ZOOM = 15f;
     // private final double KARACHI_LAT = 24.8607;
     // private final double KARACHI_LNG = 67.0011;
@@ -86,13 +101,14 @@ public class HomeDel extends Fragment implements
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_home_del, container, false);
         return view;
+
     }
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mMapView = (MapView) view.findViewById(R.id.maps);
+        mMapView = view.findViewById(R.id.maps);
         if (mMapView != null) {
             mMapView.onCreate(null);
             mMapView.onResume();
@@ -101,38 +117,87 @@ public class HomeDel extends Fragment implements
             getLocationPermission();
         }
 
-        searchView = view.findViewById(R.id.sv_location);
+    }
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                String location = searchView.getQuery().toString();
-                List<Address> addressList = null;
+    private boolean checkMapServices(){
+        if(isServicesOK()){
+            if(isMapsEnabled()){
+                return true;
+            }
+        }
+        return false;
+    }
 
-                if (location != null && !location.equals(" ")) {
-                    Geocoder geocoder = new Geocoder(getContext());
-                    try {
-                        addressList = geocoder.getFromLocationName(location, 1);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+    private void buildAlertMessageNoGps() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("This application requires GPS to work properly, do you want to enable it?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        Intent enableGpsIntent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivityForResult(enableGpsIntent, PERMISSIONS_REQUEST_ENABLE_GPS);
                     }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
+    }
 
-                    Address address = addressList.get(0);
-                    LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-                    mGoogleMap.addMarker(new MarkerOptions().position(latLng).title(location));
-                    mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+    public boolean isMapsEnabled(){
+        final LocationManager manager = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE );
+
+        if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+            buildAlertMessageNoGps();
+            return false;
+        }
+        return true;
+    }
+
+
+
+    private void init(){
+        Log.d(TAG, "init: initializing");
+
+        mSearchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                if(actionId == EditorInfo.IME_ACTION_SEARCH
+                        || actionId == EditorInfo.IME_ACTION_DONE
+                        || keyEvent.getAction() == KeyEvent.ACTION_DOWN
+                        || keyEvent.getAction() == KeyEvent.KEYCODE_ENTER){
+
+                    //execute our method for searching
+                    geoLocate();
                 }
 
                 return false;
             }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
         });
+    }
+
+    private void geoLocate () {
+        Log.d(TAG, "geoLocate: geolocating");
+
+        String searchString = mSearchText.getText().toString();
+
+        Geocoder geocoder = new Geocoder(getContext());
+        List<Address> list = new ArrayList<>();
+        try {
+            list = geocoder.getFromLocationName(searchString, 1);
+        } catch (IOException e) {
+            Log.e(TAG, "geoLocate: IOException: " + e.getMessage());
+        }
+
+        if (list.size() > 0) {
+            Address address = list.get(0);
+
+            Log.d(TAG, "geoLocate: found a location: " + address.toString());
+            //Toast.makeText(this, address.toString(), Toast.LENGTH_SHORT).show();
+
+        }
+
 
     }
+
 
     private void getDeviceLocation() {
 
@@ -195,6 +260,27 @@ public class HomeDel extends Fragment implements
         }
     }
 
+    public boolean isServicesOK(){
+        Log.d(TAG, "isServicesOK: checking google services version");
+
+        int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(getContext());
+
+        if(available == ConnectionResult.SUCCESS){
+            //everything is fine and the user can make map requests
+            Log.d(TAG, "isServicesOK: Google Play Services is working");
+            return true;
+        }
+        else if(GoogleApiAvailability.getInstance().isUserResolvableError(available)){
+            //an error occured but we can resolve it
+            Log.d(TAG, "isServicesOK: an error occured but we can fix it");
+            Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(getActivity(), available, ERROR_DIALOG_REQUEST);
+            dialog.show();
+        }else{
+            Toast.makeText(getContext(), "You can't make map requests", Toast.LENGTH_SHORT).show();
+        }
+        return false;
+    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -212,9 +298,18 @@ public class HomeDel extends Fragment implements
                     }
                     Log.d(TAG, "permission granted");
                     mLocationPermissionsGranted = true;
-                    mMapView.getMapAsync(this);
 
                 }
+            }
+        }
+    }
+
+    public void onResume() {
+        super.onResume();
+
+        if (checkMapServices()) {
+            if (!mLocationPermissionsGranted) {
+                getLocationPermission();
             }
         }
     }
@@ -236,6 +331,7 @@ public class HomeDel extends Fragment implements
             }
             mGoogleMap.setMyLocationEnabled(true);
             mGoogleMap.getUiSettings().setMyLocationButtonEnabled(false);
+            init();
 
         }
     }
