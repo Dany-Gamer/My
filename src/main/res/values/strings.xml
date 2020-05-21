@@ -11,8 +11,8 @@
     <string name="btn_sign_main">Sign up</string>
     <string name="btn_Acc_main">Already have an account? Sign in</string>
     <string name="btn_del_renter">Select your Pick Point</string>
-    <string name="btn_pick_renter">Pick up</string>
-    <string name="btn_drop_renter">Drop off</string>
+    <string name="btn_pick_renter">Pickup Time</string>
+    <string name="btn_drop_renter">Drop off Time</string>
     <string name="btn_find_renter">Find Cars</string>
     <string name="btn_subs_menu">Subscribe to a Car</string>
     <string name="btn_policy_menu">Policies</string>
@@ -28,7 +28,7 @@
     <string name="title_activity_recycler">Recycler</string>
     <string name="title_activity_booking">booking</string>
     <string name="title_activity_payment">payment</string>
-    <!--payment details string values-->
+    <!--Payment details string values-->
     <string name="card_number">Card Number</string>
     <string name="exp_date">Exp. Date</string>
     <string name="cvv">Cvv</string>
@@ -40,8 +40,7 @@
     <string name="payment_exp_month_label">Exp. Month</string>
     <string name="payment_exp_year_label">Exp. Year</string>
     <string name="currentLocation">GoogleMapCurrentLocation</string>
-
-
+    <string name="btn_bookings_menu">Bookings</string>
 
 
 </resources>

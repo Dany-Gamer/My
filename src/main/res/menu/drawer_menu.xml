@@ -8,6 +8,10 @@
             android:icon="@drawable/ic_carsubs"
             android:title="@string/btn_subs_menu"/>
 
+        <item android:id="@+id/nav_Booking"
+            android:icon="@drawable/ic_directions_car_black_24dp"
+            android:title="@string/btn_bookings_menu"/>
+
         <item android:id="@+id/nav_policy"
             android:icon="@drawable/ic_policy"
             android:title="@string/btn_policy_menu"/>

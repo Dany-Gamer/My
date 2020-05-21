@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:id="@+id/tool_bar"
-            android:background="@color/colorPrimary"
+            android:background="#424242"
             android:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
         </androidx.appcompat.widget.Toolbar>
@@ -27,11 +27,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tabLayout"
+            android:background="#424242"
             app:tabGravity="fill"
-            app:tabTextColor="@color/colorAccent"
+            app:tabTextColor="#FFFFFF"
             app:tabIndicatorHeight="1.5dp"
             app:tabMode="fixed"
-            app:tabIndicatorColor="@color/colorAccent"
+            app:tabIndicatorColor="#FFFFFF"
             >
 
         </com.google.android.material.tabs.TabLayout>
@@ -49,4 +50,3 @@
 
 
 </RelativeLayout>
-

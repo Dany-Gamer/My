@@ -14,6 +14,7 @@ public class Renter extends AppCompatActivity {
 
     Button btnDel;
     Button btnPick;
+    Button btnDrop;
     Button findCar;
     private DrawerLayout drawer;
 
@@ -26,19 +27,34 @@ public class Renter extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawer = findViewById(R.id.drawer_layout);
+
+
         btnDel = findViewById(R.id.map_in);
         btnPick = findViewById(R.id.pick_time);
         findCar = findViewById(R.id.Find_in);
+        btnDrop = findViewById(R.id.Drop_time);
         ActionBarDrawerToggle toggle;
+
         toggle = new ActionBarDrawerToggle(this, drawer , toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+
 
         btnPick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intPick = new Intent(Renter.this, Picker.class);
                 startActivity(intPick);
+            }
+        });
+
+        btnDrop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intDrop = new Intent(Renter.this, Dropoff.class);
+                startActivity(intDrop);
             }
         });
 
@@ -58,6 +74,8 @@ public class Renter extends AppCompatActivity {
 
             }
         });
+
+
 
     }
 

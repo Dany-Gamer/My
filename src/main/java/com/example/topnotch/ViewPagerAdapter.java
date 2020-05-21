@@ -9,36 +9,44 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 
-    private final List<Fragment> lstfragment = new ArrayList<>();
-    private final List<String> lstTitle = new ArrayList<>();
+  private final List<Fragment> lstfragment = new ArrayList<>();
+  private final List<String> lstTitle = new ArrayList<>();
+  private String[] tabTitles = new String[]{"Home delivery", "Self Pickup"};
 
-    public ViewPagerAdapter(@NonNull FragmentManager fm) {
 
-        super(fm);
-    }
 
-    @NonNull
-    @Override
-    public Fragment getItem(int position) {
-        return lstfragment.get(position);
-    }
 
-    @Override
-    public int getCount() {
-        return lstTitle.size();
-    }
+  public ViewPagerAdapter(@NonNull FragmentManager fm) {
 
-    @Nullable
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return super.getPageTitle(position);
-    }
 
-    public  void AddFragment(Fragment fragment,String title){
-        lstfragment.add(fragment);
-        lstTitle.add(title);
-    }
-    
+
+    super(fm);
+  }
+
+  @NonNull
+  @Override
+  public Fragment getItem(int position) {
+    return lstfragment.get(position);
+  }
+
+  @Override
+  public int getCount() {
+    return lstTitle.size();
+  }
+
+  @Nullable
+  @Override
+  public CharSequence getPageTitle(int position) {
+    return tabTitles[position];
+  }
+
+  public  void AddFragment(Fragment fragment,String title){
+    lstfragment.add(fragment);
+    lstTitle.add(title);
+  }
+
 }

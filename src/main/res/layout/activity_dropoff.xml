@@ -21,7 +21,6 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:text="End Trip Date"
         android:background="#212121"
         android:textColor="#FFFFFF"
         />

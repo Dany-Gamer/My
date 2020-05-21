@@ -50,6 +50,7 @@ public class CardetailsAdapter extends FirebaseRecyclerAdapter<Cardetails, Carde
             }
         });
 
+
     }
 
     @NonNull
